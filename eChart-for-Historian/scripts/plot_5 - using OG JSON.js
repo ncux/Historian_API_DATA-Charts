@@ -38,15 +38,15 @@ async function getValues() {
         let data = await fetch(serverUrl);
         let historianData = await data.json();
         console.log(historianData);
-        // let timeStampsAndValues = historianData.Data[0].Samples;
-        // timeStampsAndValues.forEach(value => {
-        //     // console.log(value.Value);
-        //     console.log(value.TimeStamp);
-        //     timeArray.push(simplifyTime(value.TimeStamp));
-        //     // valuesArray.push(Math.ceil(value.Value));
-        //     valuesArray.push((parseInt(value.Value)).toFixed(0));
+        let timeStampsAndValues = historianData.Data[0].Samples;
+        timeStampsAndValues.forEach(value => {
+            // console.log(value.Value);
+            console.log(value.TimeStamp);
+            timeArray.push(simplifyTime(value.TimeStamp));
+            // valuesArray.push(Math.ceil(value.Value));
+            valuesArray.push((parseInt(value.Value)).toFixed(0));
         //     plotChart();
-        // })
+        })
     } catch (e) {
         console.log(e);
     }
