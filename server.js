@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const fetch = require('node-fetch');
+global.Headers = fetch.Headers;
 
 const port = process.env.PORT || 3000;
 
@@ -19,7 +20,10 @@ app.options('*', cors());    // include before other routes
 
 app.get('/api', async (req, res, next) => {
     const options = {
-        headers: { Authorization: config.API.access_token }
+        method: 'GET',
+        withCredentials: true,
+        credentials: 'include',
+        headers: new Headers({ Authorization: config.API.access_token })
     };
 
     let response = await fetch(config.API.url, options);
